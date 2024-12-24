@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MELBET Guide</title>
+    <link rel="stylesheet" href="co-tact.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+          <li><a href="Home.html">Home</a></li>
+        </nav>
+ <!--The div element for the map -->
+ <div id="map"></div>
+
+ <!-- prettier-ignore -->
+ <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${
+ c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+     ({key: "INSERT_YOUR_API_KEY", v: "weekly"});</script>
+
+  
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <span class="mel">MEL</span><span class="bet">BET</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="contact-section">
+            <h1>Contact Us</h1>
+            <p>We value your feedback and inquiries. You can reach us using the following details:</p>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:infokangaylux@gmail.com">infokangaylux@gmail.com</a>, <a href="mailto:ramandhandumbuya01@gmail.com">ramandhandumbuya01@gmail.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:+23278297288">+23278297288</a>, <a href="tel:+23234994803">+23234994803</a></p>
+                <p><strong>Location:</strong> <b>2 Cassava Farm Junction, Juba, Sierra Leone</b></p>
+            </div>
+            <div id="map" style="height: 400px; width: 100%;"></div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 MELBET Guide. All rights reserved.</p>
+    </footer>
+
+    <script>
+        /**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+// Initialize and add the map
+let map;
+
+async function initMap() {
+  // The location of Uluru
+  const position = { lat: -25.344, lng: 131.031 };
+  // Request needed libraries.
+  //@ts-ignore
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+  // The map, centered at Uluru
+  map = new Map(document.getElementById("map"), {
+    zoom: 4,
+    center: position,
+    mapId: "DEMO_MAP_ID",
+  });
+
+  // The marker, positioned at Uluru
+  const marker = new AdvancedMarkerElement({
+    map: map,
+    position: position,
+    title: "Uluru",
+  });
+}
+
+initMap()
+            new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "MELBET Guide Location",
+            });
+        }
+
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            fetch('/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Alert the user with the response message
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>

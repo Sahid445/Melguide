@@ -1,0 +1,31 @@
+# General settings for the Netlify deployment
+[build]
+  # Directory where your files are located (e.g., if the HTML files are in a folder named "public")
+  publish = "public"  # Replace "public" with your actual build directory if it's different
+  command = "" # No build command since it's a static website
+
+# Redirect all traffic to the index.html for a single-page application
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Custom headers for improved security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'"
+
+# Custom configurations for specific paths if needed
+[[headers]]
+  for = "/assets/*"  # Example for static assets folder
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Environment variables for server-side configurations (if you need to add any)
+[build.environment]
+  NODE_VERSION = "16"  # Specify the Node.js version if required

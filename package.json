@@ -1,0 +1,21 @@
+{
+  "name": "melbet-guide",
+  "version": "1.0.0",
+  "description": "A guide website for using the MELBET betting app.",
+  "main": "index.js",
+  "dependencies": {
+    "preact": "^10.0.0"
+  },
+  "scripts": {
+    "build": "preact build"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "keywords": ["melbet", "guide", "betting-app", "dynamic site"],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
